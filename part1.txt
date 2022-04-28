@@ -1,0 +1,89 @@
+"doctors"
+-
+employeeid pk int FK >- diagnosis.doctorid
+name text
+
+
+"patients"
+-
+name text
+patient pk int FK >- diagnosis.patientid
+
+"visits"
+-
+employeeid int FK >- doctors.employeeid
+patientid int FK >- patients.name
+date date FK >- diagnosis.date
+
+"diagnosis"
+-
+doctorid int
+patientid int
+diagnosis text
+date date
+------------------------------------------------------------------------
+
+"user"
+-
+pkid
+username text
+password text
+prefferedregion text FK >- region.name
+
+
+"posts"
+-
+postid pk id
+user text FK >- user.username
+category text
+region text FK >- region.name
+title text 
+text text
+
+"region"
+-
+pkid
+name text
+
+category
+-
+pkid
+name text FK >- posts.category
+-------------------------------------------------------------------------
+
+teams
+-
+id pk id
+name text
+city text
+
+players
+-
+id pk id
+name text
+birthday date
+height float
+teamID id FK >- teams.id
+
+matches
+-
+id pk id FK >- results.matchID
+homeID id FK >- teams.id
+awayID id FK >- teams.id
+location text
+date date
+ref id
+
+results
+-
+id pk id
+teamID id FK >- teams.id
+matchID id
+results text
+
+goal
+-
+id pk id
+playerID id FK >- players.id
+matchID id FK >- matches.id
+
